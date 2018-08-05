@@ -4,7 +4,7 @@
 
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ shoe.name }}</h4>
-    <p class="list-group-item-text">{{ shoe.description }}</p>
+    <p class="list-group-item-text">{{ shoe.description | appShorten:descriptionLimit }}</p>
   </div>
   <span class="pull-right">
     <img [src]="shoe.imagePath" alt="{{ shoe.name }}" class="img-responsive max-height-50">

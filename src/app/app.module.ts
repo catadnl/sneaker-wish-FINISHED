@@ -19,6 +19,7 @@ import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth-guard.service';
 import {HttpModule} from '@angular/http';
 import {ShoesStorageService} from './shoes/shoes-storage.service';
+import {ShortenPipe} from './shared/shorten.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {ShoesStorageService} from './shoes/shoes-storage.service';
     ShoeStartComponent,
     WishListComponent,
     WishEditComponent,
-    AppDropdownDirective
+    AppDropdownDirective,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

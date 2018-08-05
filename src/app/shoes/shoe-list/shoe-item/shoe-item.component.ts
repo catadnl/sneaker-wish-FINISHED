@@ -12,6 +12,8 @@ export class ShoeItemComponent {
 
   @Input() index: number;
 
+  descriptionLimit = 15;
+
   constructor() {
   }
 }
