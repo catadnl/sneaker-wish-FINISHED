@@ -18,7 +18,4 @@ import {Component} from '@angular/core';
   styleUrls: ['./names.component.css'],
 })
 export class NamesComponent {
-
-  names: ['Gica', 'Andrei', 'Alex'];
-
 }
