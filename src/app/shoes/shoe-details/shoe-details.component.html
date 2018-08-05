@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="shoe.imagePath"
+      alt="{{ shoe.name }}"
+      class="img-responsive max-height-300">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ shoe.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        Manage shoe <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="cursor-pointer">Add to wish list</a></li>
+        <li><a class="cursor-pointer">Edit shoe</a></li>
+        <li><a class="cursor-pointer">Delete shoe</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ shoe.description }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let color of shoe.colors">
+        {{ color.name }} - {{ color.placement }}
+      </li>
+    </ul>
+  </div>
+</div>

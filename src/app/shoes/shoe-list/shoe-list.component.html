@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">Add new Shoe</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-shoe-item *ngFor="let shoe of shoes" [shoe]="shoe" (shoeSelected)="onShoeSelected(shoe)">
+
+      <!--<div class="pull-left">-->
+        <!--<h4 class="list-group-item-heading">{{ shoe.name }}</h4>-->
+        <!--<p class="list-group-item-text">{{ shoe.description }}</p>-->
+      <!--</div>-->
+
+      <!--<span class="pull-right" #shoeImageSpanRef>-->
+        <!--<img [src]="shoe.imagePath" alt="{{ shoe.name }}" class="img-responsive max-height-50">-->
+      <!--</span>-->
+
+    </app-shoe-item>
+  </div>
+</div>
+

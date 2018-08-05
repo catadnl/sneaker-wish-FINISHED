@@ -1,14 +1,11 @@
+<app-header (featureSelected)="onFeatureSelected($event)"></app-header>
+
 <div class="container">
-
   <div class="row">
-    <div class="col-xs-12">
 
-      <h1 class="text-primary">I am in App Component with title '{{title}}'</h1>
-      <hr>
+    <app-shoes *ngIf="selectedFeature === 'shoes'"></app-shoes>
+    <app-wish-list *ngIf="selectedFeature !== 'shoes'"></app-wish-list>
 
-      <app-names></app-names>
-
-    </div>
   </div>
 
 </div>

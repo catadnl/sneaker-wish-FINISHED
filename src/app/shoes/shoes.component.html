@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-5">
+    <app-shoe-list (shoeWasSelected)="onShoeWasSelected($event)"></app-shoe-list>
+  </div>
+  <div class="col-md-7">
+
+    <app-shoe-details *ngIf="this.selectedShoe" [shoe]="this.selectedShoe"></app-shoe-details>
+
+  </div>
+</div>

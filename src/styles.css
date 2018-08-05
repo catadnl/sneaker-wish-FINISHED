@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.max-height-300 {
+  max-height: 300px;
+}
+
+.max-height-50 {
+  max-height: 50px;
+}

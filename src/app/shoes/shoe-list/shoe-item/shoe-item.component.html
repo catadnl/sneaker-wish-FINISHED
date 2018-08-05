@@ -1,0 +1,12 @@
+<a class="list-group-item clearfix cursor-pointer" (click)="onSelected()">
+
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ shoe.name }}</h4>
+    <p class="list-group-item-text">{{ shoe.description }}</p>
+  </div>
+  <span class="pull-right">
+    <img [src]="shoe.imagePath" alt="{{ shoe.name }}" class="img-responsive max-height-50">
+  </span>
+
+  <!--<ng-content></ng-content>-->
+</a>
