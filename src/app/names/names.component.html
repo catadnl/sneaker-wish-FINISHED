@@ -2,22 +2,24 @@
 
   <h2>Names are loaded</h2>
 
-  <ul class="list-group">
-    <li class="list-group-item">{{names[0]}}</li>
-    <li class="list-group-item">{{names[1]}}</li>
-    <li class="list-group-item">{{names[2]}}</li>
+  <ul class="list-group" [ngStyle]="{border: getListBorder(), borderRadius: '5px'}">
 
-    <li class="list-group-item">{{getNewName()}}</li>
+    <li class="list-group-item" *ngFor="let name of names; let i = index" [ngClass]="{active: i > 2}">
+      {{name}}
+    </li>
+
   </ul>
 
   <div class="form-group">
     <label>New name
-      <!--<input type="text" class="form-control" [placeholder]="namePlaceholder" (input)="onInputNewName($event)">-->
-      <input type="text" class="form-control" [placeholder]="namePlaceholder" [(ngModel)]="newName">
+      <input type="text" class="form-control" [placeholder]="namePlaceholder" [(ngModel)]="newName"
+             (click)="onClickInput()">
     </label>
-    <p>{{newName}}</p>
+
+    <div class="alert alert-danger" role="alert" *ngIf="shouldDisplayAlert">You are trying to add an empty name</div>
+
   </div>
 
-  <button class="btn btn-primary" [disabled]="isAddDisabled" (click)="onClickAddName()">Add</button>
+  <button class="btn btn-primary" (click)="onClickAddName()">Add</button>
 
 </div>

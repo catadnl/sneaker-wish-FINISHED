@@ -7,25 +7,27 @@ import {Component} from '@angular/core';
 })
 export class NamesComponent {
   names = ['Gica', 'Andrei', 'Alex'];
-  // newName: string;
-  newName = 'Catalin';
+  newName = '';
   namePlaceholder = 'New name..';
-  isAddDisabled = false;
-
-  onInputNewName(event: Event) {
-    this.newName = (<HTMLInputElement>event.target).value;
-  }
+  shouldDisplayAlert = false;
 
   onClickAddName() {
-    this.names.push(this.newName);
-    this.isAddDisabled = true;
+    if (this.newName && this.newName.trim()) {
+      this.names.push(this.newName);
+    } else {
+      this.shouldDisplayAlert = true;
+    }
+    this.newName = '';
   }
 
-  getNewName() {
+  getListBorder() {
     if (this.names.length > 3) {
-      return this.names[3];
-    } else {
-      return '';
+      return '1px solid lightblue';
     }
+    return 'initial';
+  }
+
+  onClickInput() {
+    this.shouldDisplayAlert = false;
   }
 }
