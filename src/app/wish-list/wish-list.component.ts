@@ -1,30 +1,35 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Wish} from './model/wish.model';
-import {Color} from '../shoes/model/color.model';
-import {Shoe} from '../shoes/model/shoe.model';
+import {WishService} from './wish.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.css']
 })
-export class WishListComponent implements OnInit {
+export class WishListComponent implements OnInit, OnDestroy {
 
   wishList: Wish[];
 
-  constructor() {
+  wishesChangedSubscription: Subscription;
+
+  constructor(private wishService: WishService) {
   }
 
   ngOnInit() {
-    this.wishList = [
-      new Wish(new Shoe('Air Max 97', 'Vintage air foam shoes by Nike',
-        'https://sneakernews.com/wp-content/uploads/2017/08/skepta-nike-air-max-97-ultra-sk-release-date-01.jpg', 200,
-        [new Color('cream white', 'midsole'), new Color('blue', 'foxing')]),
-        2)
-    ];
+    this.wishList = this.wishService.getWishList().slice();
+    this.wishesChangedSubscription = this.wishService.wishesChanged.subscribe(
+      (newWishList) => this.wishList = newWishList
+    );
   }
 
   onNewWishAdded(wish: Wish) {
-    this.wishList.push(wish);
+    this.wishService.addWish(wish);
   }
+
+  ngOnDestroy(): void {
+    this.wishesChangedSubscription.unsubscribe();
+  }
+
 }

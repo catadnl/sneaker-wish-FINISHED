@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Shoe} from '../model/shoe.model';
+import {ShoesService} from '../shoes.service';
 
 @Component({
   selector: 'app-shoe-details',
@@ -7,5 +8,13 @@ import {Shoe} from '../model/shoe.model';
   styleUrls: ['./shoe-details.component.css']
 })
 export class ShoeDetailsComponent {
+
   @Input() shoe: Shoe;
+
+  constructor(private shoeService: ShoesService) {
+  }
+
+  onAddToWishList() {
+    this.shoeService.addToWishList(this.shoe);
+  }
 }
