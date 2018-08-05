@@ -50,4 +50,9 @@ export class ShoesService {
     this.shoes[index] = updatedShoe;
     this.shoesChanged.next(this.getShoes());
   }
+
+  setShoes(shoes: Shoe[]) {
+    this.shoes = shoes;
+    this.shoesChanged.next(this.getShoes());
+  }
 }

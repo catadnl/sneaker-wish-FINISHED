@@ -17,6 +17,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {ShoeStartComponent} from './shoes/shoe-start/shoe-start.component';
 import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth-guard.service';
+import {HttpModule} from '@angular/http';
+import {ShoesStorageService} from './shoes/shoes-storage.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,10 @@ import {AuthGuard} from './auth/auth-guard.service';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpModule,
     AppRoutingModule
   ],
-  providers: [ShoesService, AuthGuard, AuthService],
+  providers: [ShoesService, AuthGuard, AuthService, ShoesStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
