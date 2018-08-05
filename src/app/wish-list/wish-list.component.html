@@ -3,7 +3,9 @@
     <app-wish-edit (newWishAdded)="onNewWishAdded($event)"></app-wish-edit>
     <hr>
     <ul class="list-group">
-      <a class="list-group-item cursor-pointer" *ngFor="let wish of wishList">
+      <a class="list-group-item cursor-pointer"
+        *ngFor="let wish of wishList; let i = index"
+        (click)="onEditItem(i)">
         {{ wish.shoe.name }} ({{ wish.quantity }})
       </a>
     </ul>

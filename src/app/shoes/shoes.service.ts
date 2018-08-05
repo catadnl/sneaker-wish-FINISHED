@@ -41,4 +41,13 @@ export class ShoesService {
     this.wishService.addToWishList(shoe);
   }
 
+  addShoe(shoe: Shoe) {
+    this.shoes.push(shoe);
+    this.shoesChanged.next(this.getShoes());
+  }
+
+  updateShoe(index: number, updatedShoe: Shoe) {
+    this.shoes[index] = updatedShoe;
+    this.shoesChanged.next(this.getShoes());
+  }
 }

@@ -12,14 +12,14 @@ export class WishListComponent implements OnInit, OnDestroy {
 
   wishList: Wish[];
 
-  wishesChangedSubscription: Subscription;
+  subscription: Subscription;
 
   constructor(private wishService: WishService) {
   }
 
   ngOnInit() {
     this.wishList = this.wishService.getWishList().slice();
-    this.wishesChangedSubscription = this.wishService.wishesChanged.subscribe(
+    this.subscription = this.wishService.wishListChanged.subscribe(
       (newWishList) => this.wishList = newWishList
     );
   }
@@ -29,7 +29,11 @@ export class WishListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.wishesChangedSubscription.unsubscribe();
+    this.subscription.unsubscribe();
+  }
+
+  onEditItem(id: number) {
+    this.wishService.editStarted.next(id);
   }
 
 }

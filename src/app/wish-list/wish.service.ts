@@ -10,7 +10,9 @@ import {Subject} from 'rxjs';
 })
 export class WishService {
 
-  wishesChanged = new Subject<Wish[]>();
+  wishListChanged = new Subject<Wish[]>();
+
+  editStarted = new Subject<number>();
 
   private wishList: Wish[] = [
     new Wish(new Shoe('Air Max 97', 'Vintage air foam shoes by Nike',
@@ -20,17 +22,33 @@ export class WishService {
   ];
 
   getWishList() {
-    return this.wishList;
+    return this.wishList.slice();
+  }
+
+  getWish(id: number) {
+    return this.wishList[id];
+  }
+
+  deleteWish(id: number) {
+    this.wishList.splice(id, 1);
+    this.wishListChanged.next(this.wishList.slice());
   }
 
   addWish(wish: Wish) {
     this.wishList.push(wish);
-    this.wishesChanged.next(this.getWishList());
+    this.wishListChanged.next(this.wishList.slice());
+  }
+
+  updateWish(id: number, updatedWish: Wish) {
+    this.wishList[id] = updatedWish;
+    this.wishListChanged.next(this.wishList.slice());
   }
 
   addToWishList(shoe: Shoe) {
+
     const wish: Wish = new Wish(shoe, 1);
+
     this.wishList.push(wish);
-    this.wishesChanged.next(this.getWishList());
+    this.wishListChanged.next(this.wishList.slice());
   }
 }

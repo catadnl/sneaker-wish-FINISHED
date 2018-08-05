@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from './header/header.component';
 import {ShoesComponent} from './shoes/shoes.component';
 import {ShoeListComponent} from './shoes/shoe-list/shoe-list.component';
@@ -34,7 +34,7 @@ import {AuthGuard} from './auth/auth-guard.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [ShoesService, AuthGuard, AuthService],
