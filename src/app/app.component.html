@@ -4,7 +4,14 @@
   <div class="row">
 
     <app-shoes *ngIf="selectedFeature === 'shoes'"></app-shoes>
+
     <app-wish-list *ngIf="selectedFeature !== 'shoes'"></app-wish-list>
+
+    <!--<ng-template [ngIf]="selectedFeature !== 'shoes'">-->
+      <!---->
+      <!--<app-wish-list></app-wish-list>-->
+
+    <!--</ng-template>-->
 
   </div>
 

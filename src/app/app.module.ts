@@ -11,6 +11,7 @@ import {ShoeEditComponent} from './shoes/shoe-edit/shoe-edit.component';
 import {ShoeItemComponent} from './shoes/shoe-list/shoe-item/shoe-item.component';
 import {WishListComponent} from './wish-list/wish-list.component';
 import {WishEditComponent} from './wish-list/wish-edit/wish-edit.component';
+import { AppDropdownDirective } from './shared/app-dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {WishEditComponent} from './wish-list/wish-edit/wish-edit.component';
     ShoeDetailsComponent,
     ShoeEditComponent,
     WishListComponent,
-    WishEditComponent
+    WishEditComponent,
+    AppDropdownDirective
   ],
   imports: [
     BrowserModule,
