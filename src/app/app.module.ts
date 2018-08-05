@@ -13,6 +13,10 @@ import {WishListComponent} from './wish-list/wish-list.component';
 import {WishEditComponent} from './wish-list/wish-edit/wish-edit.component';
 import {AppDropdownDirective} from './shared/app-dropdown.directive';
 import {ShoesService} from './shoes/shoes.service';
+import {AppRoutingModule} from './app-routing.module';
+import {ShoeStartComponent} from './shoes/shoe-start/shoe-start.component';
+import {AuthService} from './auth/auth.service';
+import {AuthGuard} from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -23,15 +27,17 @@ import {ShoesService} from './shoes/shoes.service';
     ShoeItemComponent,
     ShoeDetailsComponent,
     ShoeEditComponent,
+    ShoeStartComponent,
     WishListComponent,
     WishEditComponent,
     AppDropdownDirective
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [ShoesService],
+  providers: [ShoesService, AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

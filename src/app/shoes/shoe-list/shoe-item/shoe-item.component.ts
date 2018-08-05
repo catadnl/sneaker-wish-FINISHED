@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Shoe} from '../../model/shoe.model';
 
 @Component({
@@ -7,13 +7,11 @@ import {Shoe} from '../../model/shoe.model';
   styleUrls: ['./shoe-item.component.css']
 })
 export class ShoeItemComponent {
+
   @Input() shoe: Shoe;
 
-  @Output() shoeSelected = new EventEmitter<void>();
+  @Input() index: number;
 
-  // @ContentChild('shoeImageSpanRef') shoeImageSpanRef: ElementRef;
-
-  onSelected() {
-    this.shoeSelected.emit();
+  constructor() {
   }
 }

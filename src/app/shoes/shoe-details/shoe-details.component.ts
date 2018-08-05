@@ -1,20 +1,42 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Shoe} from '../model/shoe.model';
 import {ShoesService} from '../shoes.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-shoe-details',
   templateUrl: './shoe-details.component.html',
   styleUrls: ['./shoe-details.component.css']
 })
-export class ShoeDetailsComponent {
+export class ShoeDetailsComponent implements OnInit {
 
-  @Input() shoe: Shoe;
+  shoe: Shoe;
 
-  constructor(private shoeService: ShoesService) {
+  id: number;
+
+  constructor(private shoesService: ShoesService, private route: ActivatedRoute, private router: Router) {
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.shoe = this.shoesService.getShoe(this.id);
+      }
+    );
+  }
+
+  onEditShoe() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDeleteShoe() {
+    this.shoesService.deleteShoe(this.id);
+    this.router.navigate(['/shoes']);
+  }
+
+
   onAddToWishList() {
-    this.shoeService.addToWishList(this.shoe);
+    this.shoesService.addToWishList(this.shoe);
   }
 }

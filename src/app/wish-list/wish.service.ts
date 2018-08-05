@@ -1,7 +1,8 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Shoe} from '../shoes/model/shoe.model';
 import {Wish} from './model/wish.model';
 import {Color} from '../shoes/model/color.model';
+import {Subject} from 'rxjs';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import {Color} from '../shoes/model/color.model';
 })
 export class WishService {
 
-  wishesChanged = new EventEmitter<Wish[]>();
+  wishesChanged = new Subject<Wish[]>();
 
   private wishList: Wish[] = [
     new Wish(new Shoe('Air Max 97', 'Vintage air foam shoes by Nike',
@@ -24,12 +25,12 @@ export class WishService {
 
   addWish(wish: Wish) {
     this.wishList.push(wish);
-    this.wishesChanged.emit(this.getWishList());
+    this.wishesChanged.next(this.getWishList());
   }
 
   addToWishList(shoe: Shoe) {
     const wish: Wish = new Wish(shoe, 1);
     this.wishList.push(wish);
-    this.wishesChanged.emit(this.getWishList());
+    this.wishesChanged.next(this.getWishList());
   }
 }

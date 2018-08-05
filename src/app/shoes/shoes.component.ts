@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Shoe} from './model/shoe.model';
 
 @Component({
   selector: 'app-shoes',
@@ -8,9 +7,4 @@ import {Shoe} from './model/shoe.model';
 })
 export class ShoesComponent {
 
-  selectedShoe: Shoe;
-
-  onShoeWasSelected(shoe: Shoe) {
-    this.selectedShoe = shoe;
-  }
 }

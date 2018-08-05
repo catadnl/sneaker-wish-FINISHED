@@ -1,26 +1,41 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Shoe} from '../model/shoe.model';
 import {ShoesService} from '../shoes.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-shoe-list',
   templateUrl: './shoe-list.component.html',
   styleUrls: ['./shoe-list.component.css']
 })
-export class ShoeListComponent implements OnInit {
+export class ShoeListComponent implements OnInit, OnDestroy {
+
+  shoesSubscription: Subscription;
 
   shoes: Shoe[];
 
-  @Output() shoeWasSelected = new EventEmitter<Shoe>();
-
-  constructor(private shoeService: ShoesService) {
+  constructor(private shoesService: ShoesService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.shoes = this.shoeService.getShoes();
+    this.shoes = this.shoesService.getShoes();
+
+    this.shoesSubscription = this.shoesService.shoesChanged.subscribe(
+      (shoes: Shoe[]) => {
+        this.shoes = shoes;
+      }
+    );
   }
 
-  onShoeSelected(shoe: Shoe) {
-    this.shoeWasSelected.emit(shoe);
+  onNewShoe() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  ngOnDestroy(): void {
+    this.shoesSubscription.unsubscribe();
   }
 }
+
+
+

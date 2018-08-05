@@ -2,9 +2,12 @@ import {Shoe} from './model/shoe.model';
 import {Color} from './model/color.model';
 import {Injectable} from '@angular/core';
 import {WishService} from '../wish-list/wish.service';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class ShoesService {
+
+  shoesChanged = new Subject<Shoe[]>();
 
   private shoes: Shoe[] = [
     new Shoe('Air Max 97', 'Vintage air foam shoes by Nike',
@@ -23,6 +26,15 @@ export class ShoesService {
 
   getShoes() {
     return this.shoes.slice();
+  }
+
+  getShoe(index: number) {
+    return this.shoes[index];
+  }
+
+  deleteShoe(index: number) {
+    this.shoes.splice(index, 1);
+    this.shoesChanged.next(this.getShoes());
   }
 
   addToWishList(shoe: Shoe) {
